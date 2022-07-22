@@ -28,3 +28,13 @@ def attack_queen(square, queen):
     (row2, col2) = queen
     return (row1 == row2) or (col1 == col2) or\
     abs(row1 - row2) == abs(col1 - col2)
+
+def safe_queen(square, queens):
+    """
+    Safe queen method
+    """
+    for queen in queens:
+        if attack_queen(square, queen):
+            return False
+        return True
+
