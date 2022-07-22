@@ -18,3 +18,13 @@ except ValueError:
 if n_q < 4:
     print('N must be at least 4')
     exit(1)
+
+
+def attack_queen(square, queen):
+    """
+    attack queen method
+    """
+    (row1, col1) = square
+    (row2, col2) = queen
+    return (row1 == row2) or (col1 == col2) or\
+    abs(row1 - row2) == abs(col1 - col2)
