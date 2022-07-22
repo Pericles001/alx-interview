@@ -1,54 +1,66 @@
 #!/usr/bin/python3
+""" N queens
 """
-N queens
-"""
 
-import sys
+if __name__ == '__main__':
 
-if len(sys.argv) != 2:
-    print('Usage: nqueens N\n')
-    exit(1)
+    import sys
 
-try:
-    n_q = int(sys.argv[1])
-except ValueError:
-    print('N must be a number')
-    exit(1)
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+    try:
+        size = int(sys.argv[1])
+    except BaseException:
+        print("N must be a number")
+        sys.exit(1)
+    if size < 4:
+        print("N must be at least 4")
+        sys.exit(1)
 
-if n_q < 4:
-    print('N must be at least 4')
-    exit(1)
+    def startSolve():
+        b = [[0 for j in range(size)] for i in range(size)]
+        checkRecursive(b, 0)
+        return
 
+    def checkRecursive(b, c):
+        if (c == size):
+            solution(b)
+            return True
+        ret = False
+        for i in range(size):
+            if (checkPosition(b, i, c)):
+                b[i][c] = 1
+                ret = checkRecursive(b, c + 1) or ret
+                b[i][c] = 0
+        return ret
 
-def solve_nqueens(n):
-    '''self descriptive'''
-    if n == 0:
-        return [[]]
-    inner_solution = solve_nqueens(n - 1)
-    return [solution + [(n, i + 1)]
-            for i in range(n_q)
-            for solution in inner_solution
-            if safe_queen((n, i + 1), solution)]
+    def checkPosition(b, r, c):
+        for i in range(c):
+            if (b[r][i]):
+                return False
+        i = r
+        j = c
+        while i >= 0 and j >= 0:
+            if(b[i][j]):
+                return False
+            i = i - 1
+            j = j - 1
+        i = r
+        j = c
+        while j >= 0 and i < size:
+            if(b[i][j]):
+                return False
+            i = i + 1
+            j = j - 1
+        return True
 
-
-def attack_queen(square, queen):
-    '''self descriptive'''
-    (row1, col1) = square
-    (row2, col2) = queen
-    return (row1 == row2) or (col1 == col2) or\
-        abs(row1 - row2) == abs(col1 - col2)
-
-
-def safe_queen(sqr, queens):
-    '''self descriptive'''
-    for queen in queens:
-        if attack_queen(sqr, queen):
-            return False
-    return True
-
-
-for answer in reversed(solve_nqueens(n_q)):
-    result = []
-    for p in [list(p) for p in answer]:
-        result.append([i - 1 for i in p])
-    print(result)
+    def solution(b):
+        solve = []
+        for i in range(size):
+            for j in range(size):
+                if(b[i][j] is 1):
+                    solve.append([i, j])
+        print(solve)
+        solve.clear()
+    startSolve()
