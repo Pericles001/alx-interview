@@ -16,4 +16,5 @@ async function starwarsCharacters (filmID) {
         console.log(character.name);
     }
 }
+
 starwarsCharacters(filmID);
