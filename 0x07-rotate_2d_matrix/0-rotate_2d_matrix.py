@@ -31,7 +31,5 @@ def rotate_2d_matrix(matrix):
     """
     Given an n x n 2D matrix, rotate it 90 degrees clockwise.
     """
-    if not len(matrix) or len(matrix) != len(matrix[0]):
-        return
     top, middle, bottom = (reverse_row(matrix, 0), reverse_row(matrix, 1),reverse_row(matrix, 2))
     fill_matrix(matrix, top, middle, bottom)
