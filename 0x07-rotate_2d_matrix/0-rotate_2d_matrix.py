@@ -33,7 +33,5 @@ def rotate_2d_matrix(matrix):
     """
     if not len(matrix) or len(matrix) != len(matrix[0]):
         return
-    top = reverse_row(matrix, 0)
-    middle = reverse_row(matrix, 1)
-    bottom = reverse_row(matrix, 2)
+    top, middle, bottom = (reverse_row(matrix, 0), reverse_row(matrix, 1),reverse_row(matrix, 2))
     fill_matrix(matrix, top, middle, bottom)
