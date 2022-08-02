@@ -18,4 +18,3 @@ def rotate_2d_matrix(matrix):
             matrix[last][last - offset] = matrix[i][last]
             matrix[i][last] = top
             offset += 1
-
