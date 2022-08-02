@@ -4,32 +4,18 @@
 """
 
 
-def reverse_row(target, elem):
-    """
-    Reverse a given row of a matrix
-    """
-    ans = []
-    for i in range(-1, 2):
-        if i == 0:
-            i = 1
-        elif i == 1:
-            i = 0
-        ans.append(target[i][elem])
-    return ans
-
-
-def fill_matrix(matrix, *argv):
-    """
-    Fill a matrix with numbers
-    """
-    matrix.clear()
-    for i in range(len(argv)):
-        matrix.append(argv[i])
-
-
 def rotate_2d_matrix(matrix):
     """
     Given an n x n 2D matrix, rotate it 90 degrees clockwise.
     """
-    top, middle, bottom = (reverse_row(matrix, 0), reverse_row(matrix, 1),reverse_row(matrix, 2))
-    fill_matrix(matrix, top, middle, bottom)
+    n = len(matrix)
+    for layer in range(n // 2):
+        first, last, offset = layer, n - 1 - layer, 0
+        for i in range(first, last):
+            top = matrix[first][i]
+            matrix[first][i] = matrix[last - offset][first]
+            matrix[last - offset][first] = matrix[last][last - offset]
+            matrix[last][last - offset] = matrix[i][last]
+            matrix[i][last] = top
+            offset += 1
+
