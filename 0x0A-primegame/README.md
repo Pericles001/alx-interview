@@ -5,9 +5,6 @@ AlgorithmPython
 
 -   By: Carrie Ybay, Software Engineer at Holberton School
 -   Weight: 1
--   Project will start Aug 22, 2022 4:00 AM, must end by Aug 26, 2022 4:00 AM
--   will be released at Aug 23, 2022 4:00 AM
--   An auto review will be launched at the deadline
 
 Requirements
 ------------
